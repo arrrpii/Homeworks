@@ -1,0 +1,52 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        char[,] chessboard = new char[8, 8];
+
+ 
+        for (int i = 0; i < 8; i++)
+        {
+            int column = i;
+
+            chessboard[i, column] = 'Q';
+
+            
+            for (int j = 0; j < 8; j++)
+            {
+                if (chessboard[i, j] == '\0')
+                    chessboard[i, j] = 'x';
+            }
+ 
+            for (int j = 0; j < 8; j++)
+            {
+                if (chessboard[j, column] == '\0')
+                    chessboard[j, column] = 'x';
+            }
+            for (int j = 0; j < 8; j++)
+            {
+                int diagonalRow1 = i + j;
+                int diagonalColumn1 = column + j;
+                int diagonalRow2 = i - j;
+                int diagonalColumn2 = column - j;
+
+                if (diagonalRow1 >= 0 && diagonalRow1 < 8 && diagonalColumn1 >= 0 && diagonalColumn1 < 8 && chessboard[diagonalRow1, diagonalColumn1] == '\0')
+                    chessboard[diagonalRow1, diagonalColumn1] = 'x';
+
+                if (diagonalRow2 >= 0 && diagonalRow2 < 8 && diagonalColumn2 >= 0 && diagonalColumn2 < 8 && chessboard[diagonalRow2, diagonalColumn2] == '\0')
+                    chessboard[diagonalRow2, diagonalColumn2] = 'x';
+            }
+        }
+
+                for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                Console.Write(chessboard[i, j]);
+            }
+            Console.WriteLine();
+        }
+    }
+}
