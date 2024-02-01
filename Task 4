@@ -1,0 +1,52 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        char[,] chessboard = new char[8, 8];
+
+        
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                chessboard[i, j] = '0';
+            }
+        }
+
+        Random random = new Random();
+        int row = random.Next(8);
+        int column = random.Next(8);
+
+        Console.WriteLine($"Knight starts at: ({row}, {column})");
+
+        
+        chessboard[row, column] = 'K';
+
+        
+        int[] rfork = { -2, -1, 1, 2, 2, 1, -1, -2 };
+        int[] cfork = { 1, 2, 2, 1, -1, -2, -2, -1 };
+
+        
+        int randomMove = random.Next(8);
+        int newRow = row + rfork[randomMove];
+        int newColumn = column + cfork[randomMove];
+
+        
+        if (newRow >= 0 && newRow < 8 && newColumn >= 0 && newColumn < 8)
+        {
+      
+            chessboard[newRow, newColumn] = 'K';
+            Console.WriteLine($"Knight moves to: ({newRow}, {newColumn})");
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                Console.Write($"{chessboard[i, j]} ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
