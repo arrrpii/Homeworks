@@ -1,0 +1,43 @@
+using System;
+
+class Chess
+{
+    static void Main()
+    {
+        string[,] chessboard = new string[8, 8];
+
+        for (int i = 0; i < chessboard.GetLength(0); i++)
+        {
+            for (int j = 0; j < chessboard.GetLength(1); j++)
+            {
+                chessboard[i, j] = "0 ";
+            }
+        }
+
+        Console.WriteLine("Enter the row:");
+        int row = int.Parse(Console.ReadLine()) - 1;
+        Console.WriteLine("Enter the column:");
+        int column = int.Parse(Console.ReadLine()) - 1;
+        chessboard[row, column] = "K ";
+
+        int[] rfork = { 2, 1, -1, -2, -2, -1, 1, 2 };
+        int[] cfork = { 1, 2, 2, 1, -1, -2, -2, -1 };
+
+        for(int n = 0; n < 8; n++)
+        {
+            int newrow = row + rfork[n];
+            int newcol = column + cfork[n];
+            chessboard[newrow, newcolumn] = "X ";
+
+        }
+        
+        for (int i = 0; i < chessboard.GetLength(0); i++)
+        {
+            for(int j = 0; j < chessboard.GetLength(1); j++)
+            {
+                Console.Write(chessboard[i, j]);
+            }
+            Console.WriteLine();
+        }
+    }
+}
