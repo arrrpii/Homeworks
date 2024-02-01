@@ -1,0 +1,52 @@
+using System;
+
+class Chess
+{
+    static void Main()
+    {
+        string[,] chessboard = new string[8, 8];
+
+        for (int i = 0; i < chessboard.GetLength(0); i++)
+        {
+            for (int j = 0; j < chessboard.GetLength(1); j++)
+            {
+                chessboard[i, j] = "0 ";
+            }
+        }
+
+        Console.WriteLine("Enter the row:");
+        int row = int.Parse(Console.ReadLine()) - 1;
+        Console.WriteLine("Enter the column:");
+        int column = int.Parse(Console.ReadLine()) - 1;
+        chessboard[row, column] = "Q ";
+
+        for(int i = 0; i < 8; i++)
+        {
+            if( i != row)
+            {
+                chessboard[i, column] = "X";
+            }
+            if (i != column)
+            {
+                chessboard[row, i] = "X";
+            }
+
+            int diagonalrow = row + i;
+            int diagonalcolumn = column + i;
+            chessboard[diagonalrow, diagonalcolumn] = "X";
+
+            diagonalrow = row - i;
+            diagonalcolumn = column - i;
+            chessboard[diagonalrow, diagonalcolumn] = "X";
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                Console.Write(chessboard[i, j]");  
+            }
+            Console.WriteLine();
+        }
+    }
+}
