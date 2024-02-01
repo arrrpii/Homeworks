@@ -1,0 +1,63 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        
+        int[,] matrix = {
+            {1, 0, 5},
+            {5, 7, 1},
+            {7, 1, 3}
+        };
+
+         saddlepoint(matrix);
+    }
+
+    static void saddlepoint(int[,] matrix)
+    {
+        int row = matrix.GetLength(0);
+        int column = matrix.GetLength(1);
+
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < column; j++)
+            {
+                int current = matrix[i, j];
+                int maxR = int.MinValue;
+                for (int k = 0; k < column; k++)
+                {
+                    if (matrix[i, k] > maxR)
+                    {
+                        maxR = matrix[i, k];
+                    }
+                }
+
+                
+                if (current == maxR)
+                {
+                    
+                    bool minC = true;
+                    for (int k = 0; k < row; k++)
+                    {
+                        if (k != i && matrix[k, j] < current)
+                        {
+                            minC = false;
+                            break;
+                        }
+                    }
+
+                    
+                    if (minC)
+                    {
+                        Console.WriteLine($"Saddle Point in ({i}, {j}): {current}");
+                        return;
+                    }
+                }
+            }
+        }
+
+        
+        Console.WriteLine("There is no saddle point in this matrix");
+    }
+}
